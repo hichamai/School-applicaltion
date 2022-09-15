@@ -28,10 +28,17 @@ public class HMI {
                 HMI.printAllTeachers();
             break;
              case "findStudentByName":
-                HMI.findPersonByName(Action.STUDENT);
+                HMI.printDataPersonByName(Action.STUDENT);
              break;
              case"findTeacherByName":
-                HMI.findPersonByName(Action.TEACHER);
+                HMI.printDataPersonByName(Action.TEACHER);
+             break;
+             case"removStudent":
+                 HMI.removePerson(Action.STUDENT);
+              break;
+             case "removeTeacher":
+                 HMI.removePerson(Action.TEACHER);
+              break;
         }
        
      }while(!action.equals("exit"));
@@ -88,7 +95,7 @@ public class HMI {
     }
     }
 
-     private static void findPersonByName( Action action){
+     private static Person findPersonByName( Action action){
             
        Scanner reader=new Scanner(System.in);
        System.out.println("please enter the name ");
@@ -99,10 +106,26 @@ public class HMI {
        }else{
            p=HMI.schoolService.getTeacherByName(name);
        }
-        if(p ==null){
-        System.out.println("not found");
-        }else{ System.out.println(p.getData());}
+       return p;
      };
+    
+     private static void removePerson(Action action){
+      Person p=HMI.findPersonByName(action);   
+      if( p instanceof Student){
+          HMI.schoolService.removeStudent((Student) p);
+      }else  {
+        HMI.schoolService.removeTeacher((Teacher) p);
+      }
+     }
+     private static void printDataPerson(Person person){
+         if(person ==null){
+        System.out.println("not found");
+        }else{ System.out.println(person.getData());}}
+     private static void printDataPersonByName(Action action){
+         Person p=HMI.findPersonByName(action);
+         HMI.printDataPerson(p);
+     }
+     
     }
   
 
