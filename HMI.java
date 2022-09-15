@@ -1,16 +1,16 @@
 import java.util.Scanner;
 public class HMI {
-    //la creation d'une classe pour eviter la repetiton d'objet schoolServices
+   
     public static SchoolServices schoolService;
     public static void start(){
     String action;//declaration 
     Scanner sc = new Scanner(System.in);
-    School school=HMI.creatshcool();//l'appelle de methode creatschool pour afficher les premiers sortie 
+    School school=HMI.creatshcool();
    
     System.out.println("welcome to "+school.getnom()  +"  "+school.getadress()+"  "+school.getnumeroTelephone());
      
    
-    //la boubles do .. while  pour choissez votre choix;
+   
     do{
         System.out.println("what do you want to do ? ");
         action=sc.next();
@@ -44,7 +44,7 @@ public class HMI {
      }while(!action.equals("exit"));
     };
     
-    //methode pour afficher les premiers  messages
+    
     private static School creatshcool(){
        School  school=new School();
        school.setnom("Hichem tech");
@@ -54,7 +54,7 @@ public class HMI {
        return school;
        
     };
-   //mehode pour ajouter des nouvels etudiants 
+  
     private  static void addStudent(){
     Student student =new Student();
     HMI.setDAtaPerson(student);
